@@ -1,0 +1,7 @@
+kafka:
+  uri: localhost:9092
+  producerTopicHighPriority: PRODUCER_TOPIC_HIGH_PRIORITY
+  producerTopicLowPriority: PRODUCER_TOPIC_LOW_PRIORITY
+  consumerTopics: CONSUMER_TOPIC
+  retry: 1
+  wait: 5

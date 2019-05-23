@@ -1,0 +1,10 @@
+{
+  "kafka": {
+    "uri": "KAFKA_SERVERS",
+    "producerTopicHighPriority": "KAFKA_PRODUCER_TOPIC_HIGH_PRIORITY",
+    "producerTopicLowPriority": "KAFKA_PRODUCER_TOPIC_LOW_PRIORITY",
+    "consumerTopics": "KAFKA_CONSUMER_TOPICS",
+    "retry": "KAFKA_RETRY",
+    "wait": "KAFKA_WAIT"
+  }
+}
