@@ -9,7 +9,7 @@ import { ITransaction, TransactionStatus, TransactionType } from '../models/tran
 /**
  * Example connector integration code with your platform.
  * You will implement it in the `send` method.
- * Reference Send SMS API: https://zenviasmsenus.docs.apiary.io/#reference/api-services/sending-a-single-sms
+ * Reference List SMS API: https://zenviasmsenus.docs.apiary.io/#reference/api-services/list-new-sms-received
  */
 export const controller: IMessageController = {
   send,
@@ -24,56 +24,35 @@ export const controller: IMessageController = {
 async function send(message: IMessage): Promise<any[]> {
   logger.debug(`Sending the message [${JSON.stringify(message)}] to some platform`);
 
-  const result = message.content
-  .map(async (content: any) => {
-    try {
-      const response = await sendSms(message, content);
-      if (response === null) {
-        return null;
-      }
+  const messages = [];
 
-      if (response.sendSmsResponse.statusCode === '00') {
-        return {
-          status: 'SUCCESS',
-          message: response.sendSmsResponse.detailDescription,
-        };
-      }
-
-      return {
-        status: 'FAIL',
-        message: `${response.sendSmsResponse.detailCode} - ${response.sendSmsResponse.detailDescription}`,
-      };
-    } catch (error) {
-      return {
-        status: 'FAIL',
-        message: error.message,
-      };
-    }
-  })
-  .filter(response => response !== null);
-
-  return await Promise.all(result);
-}
-
-function sendSms(message: IMessage, content: any): Promise<any> {
-  if (content.type === 'text/plain') {
-    return rp.post({
-      uri: 'https://api-rest.zenvia.com/services/send-sms',
+  try {
+    const response = await rp.post({
+      uri: 'https://api-rest.zenvia.com/services/received/list',
       headers: {
         authorization: `Basic ${message.credentials.authorization}`,
       },
-      body: {
-        sendSmsRequest: {
-          from: message.from,
-          to: message.to[0],
-          msg: content.payload.text,
-        },
-      },
       json: true,
+    });
+
+    if (response.receivedResponse.receivedMessages && response.receivedResponse.receivedMessages.length > 0) {
+      response.receivedResponse.receivedMessages.forEach((message: any) => {
+        messages.push({
+          status: 'SUCCESS',
+          transactionId: message.id,
+          message: message.body,
+        });
+      });
+    }
+
+  } catch (error) {
+    messages.push({
+      status: 'FAIL',
+      message: error.message,
     });
   }
 
-  return null;
+  return messages;
 }
 
 function createTransaction(message: IMessage, messageResponse: any[]): ITransaction[] {
@@ -87,7 +66,7 @@ function createTransaction(message: IMessage, messageResponse: any[]): ITransact
 
     const statusTransaction: ITransaction = {
       messageId: message.messageId,
-      transactionId: message.messageId,
+      transactionId: response.transactionId || message.messageId,
       channel: message.channel,
       credentials: message.credentials,
       from: message.to[0],
@@ -105,6 +84,26 @@ function createTransaction(message: IMessage, messageResponse: any[]): ITransact
       timestamp: moment.utc().format(),
     };
     transactions.push(statusTransaction);
+
+    const eventTransaction: ITransaction = {
+      transactionId: response.transactionId || message.messageId,
+      channel: message.channel,
+      credentials: message.credentials,
+      from: message.to[0],
+      to: message.from,
+      type: TransactionType.MSGEVENT,
+      status: TransactionStatus.SENT_FROM_PROVIDER,
+      content: [{
+        type: message.content[0].type,
+        payload: {
+          json: {
+            result: messageResponse,
+          },
+        },
+      }],
+      timestamp: moment.utc().format(),
+    };
+    transactions.push(eventTransaction);
   });
 
   return transactions;

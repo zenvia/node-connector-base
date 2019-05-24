@@ -1,5 +1,5 @@
-import { controller as messageController } from './facebook-message-controller';
-import { controller as webhookController } from './facebook-webhook-controller';
+import { controller as messageController } from './sms-sender-message-controller';
+import { controller as webhookController } from './sms-receiver-webhook-controller';
 
 export {
     messageController,

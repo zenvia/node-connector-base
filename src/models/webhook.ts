@@ -1,8 +1,9 @@
 // tslint:disable:prefer-array-literal
 export interface IWebhook {
 
-  integrationIdentifier: string;
-  headers: any;
-  body: any;
+  headers?: any;
+  params?: any;
+  query?: any;
+  body?: any;
 
 }

@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response, Router } from 'express';
 import * as logger from '@zenvia/zcc-logger';
+
 import { IWebhook } from '../../models/webhook';
 import { webhookHandler } from '../../handlers/webhook-handler';
 
@@ -8,8 +9,9 @@ export const router = Router();
 async function webhookMiddleware(req: Request, res: Response, next: NextFunction): Promise<void> {
   try {
     const webhook: IWebhook = {
-      integrationIdentifier: req.params.integrationIdentifier,
       headers: req.headers,
+      params: req.params,
+      query: req.query,
       body: req.body,
     };
 
@@ -23,4 +25,4 @@ async function webhookMiddleware(req: Request, res: Response, next: NextFunction
   }
 }
 
-router.post('/:integrationIdentifier', webhookMiddleware);
+router.post('/', webhookMiddleware);

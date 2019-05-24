@@ -27,7 +27,7 @@ describe('/webhook endpoint', () => {
       };
 
       request(appInit)
-      .post('/v1/webhook/87ba5bf1-d9a7-4ca5-a75d-8a6cdfde6bbd')
+      .post('/v1/webhook')
       .send(payload)
       .expect(204)
       .end((err, res) => {
