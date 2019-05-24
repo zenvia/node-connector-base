@@ -1,4 +1,5 @@
 import * as logger from '@zenvia/zcc-logger';
+
 import * as kafkaProducer from '../kafka/producer';
 import { IWebhook } from '../models/webhook';
 import { webhookController } from '../controllers';

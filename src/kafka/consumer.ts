@@ -1,4 +1,5 @@
 import * as logger from '@zenvia/zcc-logger';
+
 import { Observable, CallbackFn } from '../libs/observable';
 import { registerMessageListener } from '../kafka';
 import { IMessage } from '../models/message';

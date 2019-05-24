@@ -2,6 +2,7 @@ import * as Bluebird from 'bluebird';
 import * as config from 'config';
 import { KafkaClient, HighLevelProducer, ConsumerGroup, ConsumerGroupOptions, ProduceRequest, Message, KeyedMessage } from 'kafka-node';
 import * as logger from '@zenvia/zcc-logger';
+
 export { KeyedMessage, ProduceRequest };
 
 let client: KafkaClient;

@@ -1,6 +1,6 @@
 import * as express from 'express';
-import { createServer } from 'http';
 import * as logger from '@zenvia/zcc-logger';
+import { createServer } from 'http';
 
 function normalizePort(val: any): any {
   const iport = parseInt(val, 10);
@@ -25,7 +25,7 @@ function createOnServerError(bindTitle: string): (error: any) => void {
         process.exit(1);
         break;
       case 'EADDRINUSE':
-        logger.error(`Server Init Error:  - ${bindTitle} is already in use`);
+        logger.error(`Server Init Error: ${bindTitle} is already in use`);
         process.exit(1);
         break;
       default:

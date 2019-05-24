@@ -1,4 +1,5 @@
 import * as logger from '@zenvia/zcc-logger';
+
 import * as kafkaConsumer from '../kafka/consumer';
 import * as kafkaProducer from '../kafka/producer';
 import { IMessage } from '../models/message';
