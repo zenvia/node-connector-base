@@ -3,7 +3,7 @@ import { ITransaction } from '../models/transaction';
 
 export interface IMessageController {
 
-  send(message: IMessage, retryCounter?: number): Promise<any>;
+  send(message: IMessage): Promise<any>;
   createTransaction(message: IMessage, messageResponse: any): ITransaction[];
 
 }
