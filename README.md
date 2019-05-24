@@ -6,6 +6,10 @@ With this connector base, you can create your connector for integration with you
 
 The development team will evaluate your connector and they will deploy in the ([Zenvia](https://www.zenvia.com/)) environment.
 
+[![NPM version][npm-version-image]][npm-url]
+[![MIT License][license-image]][license-url]
+[![Coverage Status](https://coveralls.io/repos/github/zenvia/node-connector-base/badge.svg?branch=master)](https://coveralls.io/github/zenvia/node-connector-base?branch=master)
+
 
 ## Prerequisites
 
