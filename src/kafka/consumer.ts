@@ -1,11 +1,12 @@
 import * as logger from '@zenvia/zcc-logger';
 import { Observable, CallbackFn } from '../libs/observable';
 import { registerMessageListener } from '../kafka';
+import { IMessage } from '../models/message';
 
-const onMessageObserver: Observable<any> = new Observable();
+const onMessageObserver: Observable<IMessage> = new Observable();
 let ready = false;
 
-export function addListener(listener: CallbackFn<any>): void {
+export function addListener(listener: CallbackFn<IMessage>): void {
   onMessageObserver.subscribe(listener);
   if (!ready) {
     initConsumer();
@@ -27,7 +28,7 @@ function initConsumer(): void {
   ready = true;
 }
 
-function parseMessage(message: string | Buffer): any {
+function parseMessage(message: string | Buffer): IMessage {
   try {
     return JSON.parse((typeof message === 'string') ? message : message.toString());
   } catch (error) {

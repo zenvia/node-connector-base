@@ -3,7 +3,7 @@ import { ITransaction } from '../models/transaction';
 
 export interface IWebhookController {
 
-  receive(webhook: IWebhook, retryCounter?: number): Promise<any>;
+  receive(webhook: IWebhook): Promise<any>;
   createTransaction(webhook: IWebhook, messageResponse: any): ITransaction[];
 
 }
