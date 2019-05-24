@@ -4,7 +4,7 @@ import * as express from 'express';
 import * as expressWinston from 'express-winston';
 import * as logger from '@zenvia/zcc-logger';
 
-import { ApplicationError, ClientError, ErrorDTO } from './models/errors';
+import { ApplicationError, ClientError, IErrorDTO } from './models/errors';
 
 export let app: express.Application;
 
@@ -38,11 +38,18 @@ function initAppErrorHandlers(): void {
       res.status(err.httpStatusCode || 500)
          .send(err.toDTO());
     } else if (err.statusCode) {
-      const errorDTO = new ErrorDTO(err.name, err.message, err.statusCode);
+      const errorDTO: IErrorDTO = {
+        code: err.name,
+        message: err.message,
+        httpStatusCode: err.statusCode };
       res.status(errorDTO.httpStatusCode)
          .send(errorDTO);
     } else {
-      const errorDTO = new ErrorDTO('InternalError', 'Internal error', 500);
+      const errorDTO: IErrorDTO = {
+        code: 'InternalError',
+        message: 'Internal error',
+        httpStatusCode: 500,
+      };
       res.status(500)
          .send(errorDTO);
     }

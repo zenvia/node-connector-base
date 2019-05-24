@@ -1,6 +1,6 @@
-import { IErrorDTO, ErrorDTO } from './error-dto';
+import { IErrorDTO } from './error-dto';
 import { IErrorDetail } from './error-detail';
-export { IErrorDTO, ErrorDTO, IErrorDetail };
+export { IErrorDTO, IErrorDetail };
 
 export abstract class ApplicationError extends Error {
 

@@ -1,21 +1,21 @@
-# Connector Base from ([Zenvia](https://www.zenvia.com/))
+# Connector Base from [Zenvia](https://www.zenvia.com/)
 
-This is a basic example of the ([Zenvia](https://www.zenvia.com/)) connector.
+This is a basic example of the [Zenvia](https://www.zenvia.com/) connector.
 
-With this connector base, you can create your connector for integration with your platform with ([Zenvia](https://www.zenvia.com/)).
+With this connector base, you can create your connector for integration with your platform with [Zenvia](https://www.zenvia.com/).
 
-The development team will evaluate your connector and they will deploy in the ([Zenvia](https://www.zenvia.com/)) environment.
+The development team will evaluate your connector and they will deploy in the [Zenvia](https://www.zenvia.com/) environment.
 
-[![NPM version][npm-version-image]][npm-url]
-[![MIT License][license-image]][license-url]
+
+[![Build Status](https://travis-ci.org/lauragift21/travis-blog.svg?branch=master)](https://travis-ci.org/lauragift21/travis-blog)
 [![Coverage Status](https://coveralls.io/repos/github/zenvia/node-connector-base/badge.svg?branch=master)](https://coveralls.io/github/zenvia/node-connector-base?branch=master)
 
 
 ## Prerequisites
 
-* ([Node](https://nodejs.org/))
-* ([Apache Kafka](https://kafka.apache.org/)) (***optional***)
-* ([Docker](https://www.docker.com/)) (***optional***)
+* [Node](https://nodejs.org/)
+* [Apache Kafka](https://kafka.apache.org/) (***optional***)
+* [Docker](https://www.docker.com/) (***optional***)
 
 
 ## Quick Start
@@ -29,21 +29,21 @@ git clone https://github.com/zenvia/node-connector-base.git
 **2.** Install the dependencies.
 
 ```shell
-npm install
+npm run setup
 ```
 
 **3.** Connector integration with your platform.
 
-You will implement it in the `send` method of the file `src/controllers/example-message-controller.ts`.
+You will implement it in the `send` method of the file `src/controllers/sms-sender-message-controller.ts`. In this example, the [Zenvia](https://www.zenvia.com/) SMS send [API](https://zenviasmsenus.docs.apiary.io/#reference/api-services/sending-a-single-sms) was implemented.
 
 The flow in the connector is below.
 
-![alt text](docs/images/zenvia-to-third-platform.png "Connector flow")
+![alt text](./docs/images/zenvia-to-third-platform.png "Connector flow")
 
 
 **4.** Integration of your platform with the connector.
 
-You will implement it in the `receive` method of the file `src/controllers/example-webhook-controller.ts`.
+You will implement it in the `receive` method of the file `src/controllers/sms-receiver-webhook-controller.ts`. In this example, the [Zenvia](https://www.zenvia.com/) SMS receive [API](https://zenviasmsenus.docs.apiary.io/#reference/api-callbacks) was implemented.
 
 The flow in the connector is below.
 
@@ -54,7 +54,11 @@ The flow in the connector is below.
 
 ### Automatic tests
 
+**1.** Run the tests.
 
+```shell
+npm run test
+```
 
 
 ### Manual tests

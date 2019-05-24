@@ -1,5 +1,5 @@
-import { ApplicationError, IErrorDTO, ErrorDTO } from './abstract-application-error';
-export { ApplicationError, IErrorDTO, ErrorDTO };
+import { ApplicationError, IErrorDTO } from './abstract-application-error';
+export { ApplicationError, IErrorDTO };
 
 export class ClientError extends ApplicationError {
 
@@ -10,7 +10,11 @@ export class ClientError extends ApplicationError {
   }
 
   toDTO(): IErrorDTO {
-    return new ErrorDTO(this.code, this.message, this.httpStatusCode);
+    return {
+      code: this.code,
+      message: this.message,
+      httpStatusCode: this.httpStatusCode,
+    } as IErrorDTO;
   }
 
 }
