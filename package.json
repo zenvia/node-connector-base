@@ -13,11 +13,10 @@
     "setup": "npm install",
     "start": "node ./dist/index.js",
     "start:dev": "NODE_ENV=development LOGGING_FORMATTER_DISABLED=true node ./dist/index.js",
-    "start:dev:live": "NODE_ENV=development LOGGING_FORMATTER_DISABLED=true nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts",
     "test": "nyc --all mocha ./test",
     "test:coveralls": "nyc --all mocha ./test && nyc report --reporter=text-lcov | coveralls",
     "build": "rm -rf ./dist/ && tsc",
-    "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts",
+    "build:live": "NODE_ENV=development LOGGING_FORMATTER_DISABLED=true nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts",
     "lint": "tslint --project tsconfig.json",
     "lint:fix": "tslint --fix --project tsconfig.json",
     "typedoc": "typedoc --disableOutputCheck --out docs src"

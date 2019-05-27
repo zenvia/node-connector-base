@@ -7,13 +7,14 @@ With this connector base, you can create your connector for integration with you
 The development team will evaluate your connector and they will deploy in the [Zenvia](https://www.zenvia.com/) environment.
 
 
-[![Build Status](https://travis-ci.org/lauragift21/travis-blog.svg?branch=master)](https://travis-ci.org/lauragift21/travis-blog)
+[![Build Status](https://travis-ci.org/zenvia/node-connector-base.svg?branch=master)](https://travis-ci.org/zenvia/node-connector-base)
 [![Coverage Status](https://coveralls.io/repos/github/zenvia/node-connector-base/badge.svg?branch=master)](https://coveralls.io/github/zenvia/node-connector-base?branch=master)
 
 
 ## Prerequisites
 
 * [Node](https://nodejs.org/)
+* [Git](https://git-scm.com/)
 * [Apache Kafka](https://kafka.apache.org/) (***optional***)
 * [Docker](https://www.docker.com/) (***optional***)
 
@@ -84,19 +85,26 @@ docker run --name kafka --publish 9092:9092 --env ADVERTISED_HOST=localhost --en
 **4.** Publishing a message to Kafka.
 
 ```shell
-echo '{"messageId":"MESSAGE_ID","channel":{"type":"CHANNEL_TYPE","provider":"CHANNEL_PROVIDER"},"from":"INTEGRATION_ID","to":["FROM"],"content":[{"type":"application/json","payload":{"json":{"message":"Test message."}}}],"credentials":{"integrationId":"967e5cad-1bd4-40c6-989f-74c71e98c282"}}' | docker exec -i kafka bash -c "/opt/kafka_2.11-0.10.1.0/bin/kafka-console-producer.sh --broker-list localhost:9092 --topic CONSUMER_TOPIC"
+echo '{"messageId":"MESSAGE_ID","channel":{"type":"CHANNEL_TYPE","provider":"CHANNEL_PROVIDER"},"from":"INTEGRATION_ID","to":["FROM"],"content":[{"type":"text/plain","payload":{"text":"Test message."}}],"credentials":{"authorization":"dXNlcjpwYXNzd29yZA==","integrationId":"967e5cad-1bd4-40c6-989f-74c71e98c282"}}' | docker exec -i kafka bash -c "/opt/kafka_2.11-0.10.1.0/bin/kafka-console-producer.sh --broker-list localhost:9092 --topic CONSUMER_TOPIC"
 ```
 
 **5.** Requesting for Webhook.
 
 ```shell
-curl --verbose "http://localhost:3000/v1/webhook/a8dee493-0ea7-464f-be91-c0d8b2f1562d" \
+curl --verbose "http://localhost:3000/v1/webhook" \
 --request POST \
 --header "Content-Type: application/json" \
 --header "Some-Header: SOME_HEADER" \
 --data-binary "{
-    \"from\": \"FROM_IDENTIFIER\",
-    \"message\": \"SOME_MESSAGE\"
+    \"callbackMoRequest\": {
+        \"id\": \"20690090\",
+        \"mobile\": \"555191951711\",
+        \"shortCode\": \"40001\",
+        \"account\": \"zenvia.envio\",
+        \"body\": \"Some message\",
+        \"received\": \"2019-05-27T14:27:08.488-03:00\",
+        \"correlatedMessageSmsId\": \"hs765939061\"
+    }
 }"
 ```
 

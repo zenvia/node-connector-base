@@ -1,3 +1,4 @@
+import * as Bluebird from 'bluebird';
 import * as moment from 'moment';
 import * as rp from 'request-promise';
 import * as logger from '@zenvia/zcc-logger';
@@ -24,10 +25,12 @@ export const controller: IMessageController = {
 async function send(message: IMessage): Promise<any[]> {
   logger.debug(`Sending the message [${JSON.stringify(message)}] to some platform`);
 
-  const result = message.content
-  .map(async (content: any) => {
+  return await Bluebird.map(message.content, async (content) => {
     try {
       const response = await sendSms(message, content);
+
+      logger.debug(`Request sent successfully. Response from some platform: ${JSON.stringify(response)}`);
+
       if (response === null) {
         return null;
       }
@@ -44,6 +47,7 @@ async function send(message: IMessage): Promise<any[]> {
         message: `${response.sendSmsResponse.detailCode} - ${response.sendSmsResponse.detailDescription}`,
       };
     } catch (error) {
+      logger.error(`There was an error sending the message to some platform: ${error}`);
       return {
         status: 'FAIL',
         message: error.message,
@@ -51,24 +55,27 @@ async function send(message: IMessage): Promise<any[]> {
     }
   })
   .filter(response => response !== null);
-
-  return await Promise.all(result);
 }
 
 function sendSms(message: IMessage, content: any): Promise<any> {
   if (content.type === 'text/plain') {
+    const uri = 'https://api-rest.zenvia.com/services/send-sms';
+    const body = {
+      sendSmsRequest: {
+        from: message.from,
+        to: message.to[0],
+        msg: content.payload.text,
+      },
+    };
+
+    logger.info(`Sending the request [${JSON.stringify(body)}] body to [${uri}]`);
+
     return rp.post({
-      uri: 'https://api-rest.zenvia.com/services/send-sms',
+      uri,
       headers: {
         authorization: `Basic ${message.credentials.authorization}`,
       },
-      body: {
-        sendSmsRequest: {
-          from: message.from,
-          to: message.to[0],
-          msg: content.payload.text,
-        },
-      },
+      body,
       json: true,
     });
   }

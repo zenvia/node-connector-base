@@ -26,25 +26,39 @@ async function send(message: IMessage): Promise<any[]> {
 
   const messages = [];
 
+  const uri = 'https://api-rest.zenvia.com/services/received/list';
+
+  logger.info(`Sending the request to [${uri}]`);
+
   try {
     const response = await rp.post({
-      uri: 'https://api-rest.zenvia.com/services/received/list',
+      uri,
       headers: {
         authorization: `Basic ${message.credentials.authorization}`,
+        'content-type': 'application/json',
+        accept: 'application/json',
       },
       json: true,
     });
 
-    if (response.receivedResponse.receivedMessages && response.receivedResponse.receivedMessages.length > 0) {
-      response.receivedResponse.receivedMessages.forEach((message: any) => {
-        messages.push({
-          status: 'SUCCESS',
-          transactionId: message.id,
-          message: message.body,
+    logger.debug(`Request sent successfully to [${uri}]. Response from some platform: ${JSON.stringify(response)}`);
+
+    if (response.receivedResponse.statusCode === '00') {
+      if (response.receivedResponse.receivedMessages && response.receivedResponse.receivedMessages.length > 0) {
+        response.receivedResponse.receivedMessages.forEach((message: any) => {
+          messages.push({
+            status: 'SUCCESS',
+            transactionId: message.id,
+            message: message.body,
+          });
         });
-      });
+      }
     }
 
+    messages.push({
+      status: 'FAIL',
+      message: `${response.receivedResponse.detailCode} - ${response.receivedResponse.detailDescription}`,
+    });
   } catch (error) {
     messages.push({
       status: 'FAIL',
