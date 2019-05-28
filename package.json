@@ -1,6 +1,6 @@
 {
   "name": "connector-base",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "license": "MIT",
   "private": false,
   "author": "Rodrigo Kamada <rodrigo.kamada@zenvia.com> (https://github.com/rodrigokamada)",
