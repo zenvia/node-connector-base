@@ -6,9 +6,12 @@ With this connector base, you can create your connector for integration with you
 
 The development team will evaluate your connector and they will deploy in the [Zenvia](https://www.zenvia.com/) environment.
 
+
 [![License](https://img.shields.io/github/license/zenvia/node-connector-base.svg)](LICENSE)
 [![Build Status](https://travis-ci.org/zenvia/node-connector-base.svg?branch=master)](https://travis-ci.org/zenvia/node-connector-base)
 [![Coverage Status](https://coveralls.io/repos/github/zenvia/node-connector-base/badge.svg?branch=master)](https://coveralls.io/github/zenvia/node-connector-base?branch=master)
+[![Dependencies](https://img.shields.io/david/zenvia/node-connector-base.svg)](https://david-dm.org/zenvia/node-connector-base)
+
 
 
 ## Prerequisites
@@ -17,6 +20,7 @@ The development team will evaluate your connector and they will deploy in the [Z
 * [Git](https://git-scm.com/)
 * [Apache Kafka](https://kafka.apache.org/) (***optional***)
 * [Docker](https://www.docker.com/) (***optional***)
+
 
 
 ## Quick Start
@@ -49,6 +53,7 @@ You will implement it in the `receive` method of the file `src/controllers/sms-r
 The flow in the connector is below.
 
 ![alt text](docs/images/third-platform-to-zenvia.png "Connector flow")
+
 
 
 ## Tests
@@ -109,6 +114,7 @@ curl --verbose "http://localhost:3000/v1/webhook" \
 ```
 
 
+
 ## Useful Docker commands
 
 * **Remove a container**:
@@ -116,6 +122,7 @@ curl --verbose "http://localhost:3000/v1/webhook" \
 ```shell
 docker rm kafka
 ```
+
 
 
 ## License
