@@ -13,6 +13,8 @@ The development team will evaluate your connector and they will deploy in the [Z
 [![Codecov](https://codecov.io/gh/zenvia/node-connector-base/branch/master/graph/badge.svg)](https://codecov.io/gh/zenvia/node-connector-base)
 [![Dependencies](https://img.shields.io/david/zenvia/node-connector-base.svg)](https://david-dm.org/zenvia/node-connector-base)
 
+[![Twitter Follow](https://img.shields.io/twitter/follow/ZenviaMobile.svg?style=social)](https://twitter.com/intent/follow?screen_name=ZenviaMobile)
+
 
 
 ## Prerequisites
