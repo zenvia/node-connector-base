@@ -25,7 +25,7 @@ export class ValidationError extends ClientError {
       message: this.message,
       httpStatusCode: this.httpStatusCode,
       details: this.details,
-    };
+    } as IErrorDTO;
   }
 
 }
