@@ -10,13 +10,14 @@ The development team will evaluate your connector and they will deploy in the [Z
 [![License](https://img.shields.io/github/license/zenvia/node-connector-base.svg)](LICENSE)
 [![Build Status](https://travis-ci.org/zenvia/node-connector-base.svg?branch=master)](https://travis-ci.org/zenvia/node-connector-base)
 [![Coverage Status](https://coveralls.io/repos/github/zenvia/node-connector-base/badge.svg?branch=master)](https://coveralls.io/github/zenvia/node-connector-base?branch=master)
+[![Codecov](https://codecov.io/gh/zenvia/node-connector-base/branch/master/graph/badge.svg)](https://codecov.io/gh/zenvia/node-connector-base)
 [![Dependencies](https://img.shields.io/david/zenvia/node-connector-base.svg)](https://david-dm.org/zenvia/node-connector-base)
 
 
 
 ## Prerequisites
 
-* [Node](https://nodejs.org/)
+* [Node.js](https://nodejs.org/)
 * [Git](https://git-scm.com/)
 * [Apache Kafka](https://kafka.apache.org/) (***optional***)
 * [Docker](https://www.docker.com/) (***optional***)
