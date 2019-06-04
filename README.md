@@ -46,7 +46,7 @@ You will implement it in the `send` method of the file `src/controllers/sms-send
 
 The flow in the connector is below.
 
-![alt text](./docs/images/zenvia-to-third-platform.png "Connector flow")
+![alt text](docs/images/zenvia-to-third-platform.png "Connector flow")
 
 
 **4.** Integration of your platform with the connector.
