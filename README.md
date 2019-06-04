@@ -21,8 +21,8 @@ The development team will evaluate your connector and they will deploy in the [Z
 
 * [Node.js](https://nodejs.org/)
 * [Git](https://git-scm.com/)
-* [Apache Kafka](https://kafka.apache.org/) (***optional***)
-* [Docker](https://www.docker.com/) (***optional***)
+* [Apache Kafka](https://kafka.apache.org/) (*optional*)
+* [Docker](https://www.docker.com/) (*optional*)
 
 
 
