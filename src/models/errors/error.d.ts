@@ -1,6 +1,6 @@
 import { IErrorDetail } from './error-detail';
 
-export interface IErrorDTO {
+export interface IError {
 
   code: string;
   message: string;

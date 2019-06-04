@@ -1,4 +1,4 @@
-import { ClientError, IErrorDTO } from './client-error';
+import { ClientError, IError } from './client-error';
 import { IErrorDetail } from './error-detail';
 
 export class ValidationError extends ClientError {
@@ -19,13 +19,13 @@ export class ValidationError extends ClientError {
     this.details.push(detail);
   }
 
-  toDTO(): IErrorDTO {
+  toJson(): IError {
     return {
       code: this.code,
       message: this.message,
       httpStatusCode: this.httpStatusCode,
       details: this.details,
-    } as IErrorDTO;
+    } as IError;
   }
 
 }

@@ -1,8 +1,8 @@
-import { IErrorDTO } from './error-dto';
-import { IErrorDetail } from './error-detail';
-export { IErrorDTO, IErrorDetail };
+import { IError } from './error';
+import { IErrorDetail } from './error-detail.d';
+export { IError, IErrorDetail };
 
-export abstract class ApplicationError extends Error {
+export abstract class AbstractError extends Error {
 
   public code: string;
   public httpStatusCode = 500;
@@ -11,6 +11,6 @@ export abstract class ApplicationError extends Error {
     super(message);
   }
 
-  abstract toDTO(): IErrorDTO;
+  abstract toJson(): IError;
 
 }

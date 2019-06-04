@@ -1,7 +1,7 @@
-import { ApplicationError, IErrorDTO } from './abstract-application-error';
-export { ApplicationError, IErrorDTO };
+import { AbstractError, IError } from './abstract-error';
+export { AbstractError, IError };
 
-export class ClientError extends ApplicationError {
+export class ClientError extends AbstractError {
 
   constructor(code: string, message: string, httpStatusCode: number) {
     super(message);
@@ -9,12 +9,12 @@ export class ClientError extends ApplicationError {
     this.httpStatusCode = httpStatusCode;
   }
 
-  toDTO(): IErrorDTO {
+  toJson(): IError {
     return {
       code: this.code,
       message: this.message,
       httpStatusCode: this.httpStatusCode,
-    } as IErrorDTO;
+    } as IError;
   }
 
 }
