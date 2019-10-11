@@ -7,10 +7,9 @@ With this connector base, you can create your connector for integration with you
 The development team will evaluate your connector and they will deploy in the [Zenvia](https://www.zenvia.com/) environment.
 
 
-[![License](https://img.shields.io/github/license/zenvia/node-connector-base.svg)](LICENSE)
+[![License](https://img.shields.io/github/license/zenvia/node-connector-base.svg)](LICENSE.md)
 [![Build Status](https://travis-ci.org/zenvia/node-connector-base.svg?branch=master)](https://travis-ci.org/zenvia/node-connector-base)
 [![Coverage Status](https://coveralls.io/repos/github/zenvia/node-connector-base/badge.svg?branch=master)](https://coveralls.io/github/zenvia/node-connector-base?branch=master)
-[![Codecov](https://codecov.io/gh/zenvia/node-connector-base/branch/master/graph/badge.svg)](https://codecov.io/gh/zenvia/node-connector-base)
 [![Dependencies](https://img.shields.io/david/zenvia/node-connector-base.svg)](https://david-dm.org/zenvia/node-connector-base)
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/ZenviaMobile.svg?style=social)](https://twitter.com/intent/follow?screen_name=ZenviaMobile)
@@ -37,7 +36,7 @@ git clone https://github.com/zenvia/node-connector-base.git
 **2.** Install the dependencies.
 
 ```shell
-npm run setup
+npm ci
 ```
 
 **3.** Connector integration with your platform.
@@ -66,7 +65,7 @@ The flow in the connector is below.
 **1.** Run the tests.
 
 ```shell
-npm run test
+npm test
 ```
 
 
@@ -130,4 +129,4 @@ docker rm kafka
 
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE.md)
