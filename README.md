@@ -12,7 +12,7 @@ The development team will evaluate your connector and they will deploy in the [Z
 [![Coverage Status](https://coveralls.io/repos/github/zenvia/node-connector-base/badge.svg?branch=master)](https://coveralls.io/github/zenvia/node-connector-base?branch=master)
 [![Dependencies](https://img.shields.io/david/zenvia/node-connector-base.svg)](https://david-dm.org/zenvia/node-connector-base)
 
-[![Twitter Follow](https://img.shields.io/twitter/follow/ZenviaMobile.svg?style=social)](https://twitter.com/intent/follow?screen_name=ZenviaMobile)
+[![Twitter Follow](https://img.shields.io/twitter/follow/ZENVIA_.svg?style=social)](https://twitter.com/intent/follow?screen_name=ZENVIA_)
 
 
 
