@@ -33,7 +33,7 @@
   "dependencies": {
     "@zenvia/zcc-logger": "^1.3.0",
     "bluebird": "^3.7.0",
-    "config": "^3.2.3",
+    "config": "^3.3.8",
     "express": "^4.17.1",
     "express-winston": "^2.6.0",
     "js-yaml": "^3.13.1",
