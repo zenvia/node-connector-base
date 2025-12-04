@@ -7,7 +7,6 @@
     ],
     "jsRules": {},
     "rules": {
-        /// https://github.com/Platypi/style_typescript
         "align": [
             true,
             "statements"
@@ -68,7 +67,6 @@
         "no-use-before-declare": true,
         "no-var-keyword": true,
         "no-var-requires": false,
-        /// "object-literal-sort-keys": true,
         "one-line": [
             true,
             "check-open-brace",
@@ -119,7 +117,6 @@
         ],
 
 
-        /// overrides
         "radix": false,
         "variable-name": false,
         "object-literal-sort-keys": false,
