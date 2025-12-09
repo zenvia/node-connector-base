@@ -1,4 +1,4 @@
-import * as logger from '@zenvia/zcc-logger';
+import logger from '@zenvia/logger';;
 
 import * as kafkaConsumer from '../kafka/consumer';
 import * as kafkaProducer from '../kafka/producer';

@@ -3,11 +3,13 @@ import * as request from 'supertest';
 import * as sinon from 'sinon';
 import * as app from '../../src/app';
 import * as webhookHandler from '../../src/handlers/webhook-handler';
+import { IWebhook } from '../../src/models/webhook';
+import { App } from 'supertest/types';
 
 describe('/webhook endpoint', () => {
 
-  let appInit;
-  let webhookHandlerStub;
+  let appInit: App;
+  let webhookHandlerStub: sinon.SinonStub<[webhook: IWebhook], Promise<void>>;
 
   before(async () => {
     appInit = await app.init();

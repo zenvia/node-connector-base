@@ -1,5 +1,5 @@
 import * as moment from 'moment';
-import * as logger from '@zenvia/zcc-logger';
+import logger from '@zenvia/logger';;
 
 import { ITransaction, TransactionStatus, TransactionType } from '../models/transaction';
 import { IWebhook } from '../models/webhook';

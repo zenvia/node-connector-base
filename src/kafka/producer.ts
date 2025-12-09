@@ -1,7 +1,7 @@
 import * as Bluebird from 'bluebird';
 import * as config from 'config';
 import { v4 as uuidv4 } from 'uuid';
-import * as logger from '@zenvia/zcc-logger';
+import logger from '@zenvia/logger';;
 
 import { sendMessage, ProduceRequest, KeyedMessage } from '../kafka';
 import { ITransaction, TransactionType } from '../models/transaction';

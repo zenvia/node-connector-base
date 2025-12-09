@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response, Router } from 'express';
-import * as logger from '@zenvia/zcc-logger';
+import logger from '@zenvia/logger';;
 
 import { IWebhook } from '../../models/webhook';
 import { webhookHandler } from '../../handlers/webhook-handler';

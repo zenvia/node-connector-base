@@ -1,7 +1,7 @@
 import * as Bluebird from 'bluebird';
 import * as moment from 'moment';
 import * as rp from 'request-promise';
-import * as logger from '@zenvia/zcc-logger';
+import logger from '@zenvia/logger';;
 
 import { IMessageController } from './message-controller';
 import { IMessage } from '../models/message';

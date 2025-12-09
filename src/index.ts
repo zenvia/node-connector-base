@@ -1,4 +1,4 @@
-import * as logger from '@zenvia/zcc-logger';
+import logger from '@zenvia/logger';
 
 import { init as initApp, app } from './app';
 import { init as initKafka } from './kafka';
