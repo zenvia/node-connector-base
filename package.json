@@ -7,8 +7,8 @@
   "scripts": {
     "start": "node ./dist/index.js",
     "start:dev": "NODE_ENV=development LOGGING_FORMATTER_DISABLED=true node ./dist/index.js",
-    "test": "nyc --all mocha ./test",
-    "test:coveralls": "nyc --all mocha ./test && nyc report --reporter=text-lcov | coveralls",
+    "test": "nyc --all mocha",
+    "test:coveralls": "nyc --all mocha && nyc report --reporter=text-lcov | coveralls",
     "build": "rm -rf ./dist/ && tsc",
     "build:live": "NODE_ENV=development LOGGING_FORMATTER_DISABLED=true nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
