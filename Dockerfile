@@ -3,6 +3,8 @@
 ############################################
 FROM node:24-alpine AS appbuild
 
+RUN apk --no-cache add python3 py3-pip make g++
+
 # Create app directory
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
@@ -26,6 +28,8 @@ RUN rm -rf node_modules && \
 ### IMAGE BUILD STAGE
 ############################################
 FROM node:24-alpine
+
+RUN apk --no-cache add curl vim
 
 # Create app directory
 RUN mkdir -p /usr/src/app
