@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@zenvia/logger": "1.6.1",
+    "axios": "^1.13.2",
     "bluebird": "^3.7.2",
     "config": "^4.1.1",
     "express": "^5.2.1",

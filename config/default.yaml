@@ -5,3 +5,5 @@ kafka:
   consumerTopics: CONSUMER_TOPIC
   retry: 1
   wait: 5
+ZenApi:
+  uri: https://api-hlg.zenvia.com/v2
