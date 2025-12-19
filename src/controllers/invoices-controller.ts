@@ -1,13 +1,13 @@
 import { InvoiceDTO } from '../models/zen-api';
-import { InvoiceCsvStrategy } from '../strategies/invoice-csv-strategy';
+import { AbstractCsvStrategy } from '../strategies/abstract-csv-strategy';
 import { BaseBatchController } from './base-bacth-controller';
 
 export class InvoiceController extends BaseBatchController<InvoiceDTO> {
-  constructor(zenApiConfig: any) {
+  constructor(zenApiConfig: any, csvStrategy: AbstractCsvStrategy<InvoiceDTO>) {
     super(
       {
         zenApiConfig,
-        csvStrategy: new InvoiceCsvStrategy(),
+        csvStrategy,
         resourceName: 'invoice',
       }
     );

@@ -5,13 +5,14 @@ import { ContactsController } from './contacts-controller';
 import { ProductsController } from './products-controller';
 import { OrdersController } from './orders-controller';
 import { InvoiceController } from './invoices-controller';
+import { contactCsvStrategy, invoiceCsvStrategy, orderCsvStrategy, productCsvStrategy } from '../strategies';
 
 const zenApiConfig = config.get('ZenApi');
 
-const contactsController = new ContactsController(zenApiConfig);
-const productsController = new ProductsController(zenApiConfig);
-const ordersController = new OrdersController(zenApiConfig);
-const invoicesController = new InvoiceController(zenApiConfig);
+const contactsController = new ContactsController(zenApiConfig, contactCsvStrategy);
+const productsController = new ProductsController(zenApiConfig, productCsvStrategy);
+const ordersController = new OrdersController(zenApiConfig, orderCsvStrategy);
+const invoicesController = new InvoiceController(zenApiConfig, invoiceCsvStrategy);
 
 export {
     messageController,

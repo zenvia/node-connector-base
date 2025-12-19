@@ -1,13 +1,13 @@
 import { ProductDTO } from '../models/zen-api';
-import { ProductCsvStrategy } from '../strategies/product-csv-strategy';
+import { AbstractCsvStrategy } from '../strategies/abstract-csv-strategy';
 import { BaseBatchController } from './base-bacth-controller';
 
 export class ProductsController extends BaseBatchController<ProductDTO> {
-  constructor(zenApiConfig: any) {
+  constructor(zenApiConfig: any, csvStrategy: AbstractCsvStrategy<ProductDTO>) {
     super(
       {
         zenApiConfig,
-        csvStrategy: new ProductCsvStrategy(),
+        csvStrategy,
         resourceName: 'product',
       }
     );

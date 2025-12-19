@@ -1,13 +1,13 @@
 import { ContactDTO } from '../models/zen-api';
-import { ContactCsvStrategy } from '../strategies/contact-csv-strategy';
+import { AbstractCsvStrategy } from '../strategies/abstract-csv-strategy';
 import { BaseBatchController } from './base-bacth-controller';
 
 export class ContactsController extends BaseBatchController<ContactDTO> {
-  constructor(zenApiConfig: any) {
+  constructor(zenApiConfig: any, csvStrategy: AbstractCsvStrategy<ContactDTO>) {
     super(
       {
         zenApiConfig,
-        csvStrategy: new ContactCsvStrategy(),
+        csvStrategy,
         resourceName: 'contact',
       }
     );
