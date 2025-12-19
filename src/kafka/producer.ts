@@ -9,7 +9,7 @@ import { ITransaction, TransactionType } from '../models/transaction';
 const kafkaConfig: any = config.get('kafka');
 
 export function sendTransactions(transactions: ITransaction[]): Bluebird<any[]> {
-  return Bluebird.map(transactions, transaction => sendTransaction(transaction), { concurrency: 2 });
+  return Bluebird.map(transactions, (transaction: ITransaction) => sendTransaction(transaction), { concurrency: 2 });
 }
 
 export async function sendTransaction(transaction: ITransaction): Promise<boolean> {

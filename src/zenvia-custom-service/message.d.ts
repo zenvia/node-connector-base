@@ -1,6 +1,4 @@
-// tslint:disable:prefer-array-literal
 export interface IMessage {
-
   messageId: string;
   channel: {
     type: string;
@@ -14,5 +12,8 @@ export interface IMessage {
     payload: any;
   }>;
   details: any;
+}
 
+export interface IZenviaConfig {
+  uri: string;
 }

@@ -2,7 +2,7 @@ import logger from '@zenvia/logger';;
 
 import * as kafkaConsumer from '../kafka/consumer';
 import * as kafkaProducer from '../kafka/producer';
-import { IMessage } from '../models/message';
+import { IMessage } from '../zenvia-custom-service/message';
 import { messageController } from '../controllers';
 
 export function init(): void {

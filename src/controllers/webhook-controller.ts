@@ -2,7 +2,7 @@ import * as moment from 'moment';
 import logger from '@zenvia/logger';;
 
 import { ITransaction, TransactionStatus, TransactionType } from '../models/transaction';
-import { IWebhook } from '../models/webhook';
+import { IWebhook } from '../zenvia-custom-service/webhook';
 import { IWebhookController } from './webhook-controller';
 
 /**

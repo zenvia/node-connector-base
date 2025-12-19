@@ -1,3 +1,5 @@
+zenvia:
+  uri: https://custom-connector.zenvia.com/v1/transactions
 kafka:
   uri: localhost:9092
   producerTopicHighPriority: PRODUCER_TOPIC_HIGH_PRIORITY
