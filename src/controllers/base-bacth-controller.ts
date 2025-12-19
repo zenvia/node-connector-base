@@ -1,16 +1,16 @@
 import { Request, Response, NextFunction } from 'express';
 import axios from 'axios';
-import { BatchType } from '../models/zen-api';
+import { BatchType, IZenApiConfig } from '../models/zen-api';
 import { AbstractCsvStrategy } from '../strategies/abstract-csv-strategy';
 
 interface BaseControllerOptions<T> {
-  zenApiConfig: any;
+  zenApiConfig: IZenApiConfig;
   csvStrategy: AbstractCsvStrategy<T>;
   resourceName: BatchType;
 }
 
 export abstract class BaseBatchController<T> {
-  protected zenApiConfig: any;
+  protected zenApiConfig: IZenApiConfig;
   protected csvStrategy: AbstractCsvStrategy<T>;
   protected resourceName: BatchType;
   protected endpoint: string;

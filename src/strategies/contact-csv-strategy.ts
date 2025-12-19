@@ -1,7 +1,7 @@
-import { ContactDTO } from "../models/zen-api";
+import { IContactDTO } from "../models/zen-api";
 import { AbstractCsvStrategy } from "./abstract-csv-strategy";
 
-export class ContactCsvStrategy extends AbstractCsvStrategy<ContactDTO> {
+export class ContactCsvStrategy extends AbstractCsvStrategy<IContactDTO> {
   protected getHeaders(): string[] {
     return [
       'externalPlatform', 'externalId', 'firstName', 'lastName', 'birthdate',
@@ -10,7 +10,7 @@ export class ContactCsvStrategy extends AbstractCsvStrategy<ContactDTO> {
     ];
   }
 
-  protected mapRow(data: ContactDTO): any[] {
+  protected mapRow(data: IContactDTO): any[] {
     return [
       data.externalPlatform,
       data.externalId,

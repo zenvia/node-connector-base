@@ -6,8 +6,9 @@ import { ProductsController } from './products-controller';
 import { OrdersController } from './orders-controller';
 import { InvoiceController } from './invoices-controller';
 import { contactCsvStrategy, invoiceCsvStrategy, orderCsvStrategy, productCsvStrategy } from '../strategies';
+import { IZenApiConfig } from '../models/zen-api';
 
-const zenApiConfig = config.get('ZenApi');
+const zenApiConfig = config.get<IZenApiConfig>('ZenApi');
 
 const contactsController = new ContactsController(zenApiConfig, contactCsvStrategy);
 const productsController = new ProductsController(zenApiConfig, productCsvStrategy);

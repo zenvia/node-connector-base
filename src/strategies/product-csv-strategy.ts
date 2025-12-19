@@ -1,7 +1,7 @@
-import { ProductDTO } from "../models/zen-api";
+import { IProductDTO } from "../models/zen-api";
 import { AbstractCsvStrategy } from "./abstract-csv-strategy";
 
-export class ProductCsvStrategy extends AbstractCsvStrategy<ProductDTO> {
+export class ProductCsvStrategy extends AbstractCsvStrategy<IProductDTO> {
   protected getHeaders(): string[] {
     return [
       'externalPlatform', 'externalId', 'name', 'sku', 'ean', 'brand',
@@ -9,7 +9,7 @@ export class ProductCsvStrategy extends AbstractCsvStrategy<ProductDTO> {
     ];
   }
 
-  protected mapRow(data: ProductDTO): any[] {
+  protected mapRow(data: IProductDTO): any[] {
     return [
       data.externalPlatform,
       data.externalId,

@@ -1,7 +1,7 @@
-import { OrderDTO } from "../models/zen-api";
+import { IOrderDTO } from "../models/zen-api";
 import { AbstractCsvStrategy } from "./abstract-csv-strategy";
 
-export class OrderCsvStrategy extends AbstractCsvStrategy<OrderDTO> {
+export class OrderCsvStrategy extends AbstractCsvStrategy<IOrderDTO> {
   protected getHeaders(): string[] {
     return [
       'externalPlatform', 'externalId', 'invoiceExternalId', 'customerExternalId',
@@ -12,7 +12,7 @@ export class OrderCsvStrategy extends AbstractCsvStrategy<OrderDTO> {
     ];
   }
 
-  protected mapRow(data: OrderDTO): any[] {
+  protected mapRow(data: IOrderDTO): any[] {
     const items = data.items || [];
     return [
       data.externalPlatform,

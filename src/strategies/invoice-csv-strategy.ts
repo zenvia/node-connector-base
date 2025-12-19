@@ -1,7 +1,7 @@
-import { InvoiceDTO } from "../models/zen-api";
+import { IInvoiceDTO } from "../models/zen-api";
 import { AbstractCsvStrategy } from "./abstract-csv-strategy";
 
-export class InvoiceCsvStrategy extends AbstractCsvStrategy<InvoiceDTO> {
+export class InvoiceCsvStrategy extends AbstractCsvStrategy<IInvoiceDTO> {
   protected getHeaders(): string[] {
     return [
       'externalPlatform', 'externalId', 'customerExternalId', 'issueTimestamp',
@@ -12,7 +12,7 @@ export class InvoiceCsvStrategy extends AbstractCsvStrategy<InvoiceDTO> {
     ];
   }
 
-  protected mapRow(data: InvoiceDTO): any[] {
+  protected mapRow(data: IInvoiceDTO): any[] {
     const items = data.items || [];
     return [
       data.externalPlatform,

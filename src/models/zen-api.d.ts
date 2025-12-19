@@ -19,7 +19,7 @@ export type MeasurementUnit =
   | 'PARES' | 'PC' | 'POTE' | 'K' | 'RESMA' | 'ROLO' | 'SACO' | 'SACOLA' | 'TAMBOR'
   | 'TANQUE' | 'TON' | 'TUBO' | 'UNID' | 'VASIL' | 'VIDRO';
 
-export interface ItemBase {
+export interface IItemBase {
   productExternalId?: string;
   sku?: string;
   ean?: string;
@@ -30,13 +30,13 @@ export interface ItemBase {
   currency: string;
 }
 
-export interface InvoiceItem extends ItemBase {
+export interface IInvoiceItem extends IItemBase {
   totalValue?: number | string;
   fiscalOperationCode?: string;
   ncm?: string;
 }
 
-export interface ContactDTO {
+export interface IContactDTO {
   externalPlatform?: Platform;
   externalId?: string;
   firstName: string;
@@ -54,7 +54,7 @@ export interface ContactDTO {
   neighborhood?: string;
 }
 
-export interface ProductDTO {
+export interface IProductDTO {
   externalPlatform: Platform;
   externalId: string;
   name: string;
@@ -68,7 +68,7 @@ export interface ProductDTO {
   ncm?: string;
 }
 
-export interface OrderDTO {
+export interface IOrderDTO {
   externalPlatform: Platform;
   externalId: string;
   invoiceExternalId?: string;
@@ -81,10 +81,10 @@ export interface OrderDTO {
   primaryPhone?: string;
   email: string | string[];
   orderStatus: OrderStatus;
-  items?: ItemBase[];
+  items?: IItemBase[];
 }
 
-export interface InvoiceDTO {
+export interface IInvoiceDTO {
   externalPlatform: Platform;
   externalId: string;
   customerExternalId?: string;
@@ -99,5 +99,9 @@ export interface InvoiceDTO {
   primaryPhone?: string;
   email?: string;
   totalAmount: number | string;
-  items?: InvoiceItem[];
+  items?: IInvoiceItem[];
+}
+
+export interface IZenApiConfig {
+  uri: string;
 }
