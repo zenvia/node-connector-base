@@ -3,7 +3,6 @@ import { IErrorDetail } from './error-detail.d';
 export { IError, IErrorDetail };
 
 export abstract class AbstractError extends Error {
-
   public code: string;
   public httpStatusCode = 500;
 
@@ -12,5 +11,4 @@ export abstract class AbstractError extends Error {
   }
 
   abstract toJson(): IError;
-
 }

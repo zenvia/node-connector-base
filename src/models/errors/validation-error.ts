@@ -2,7 +2,6 @@ import { ClientError, IError } from './client-error';
 import { IErrorDetail } from './error-detail';
 
 export class ValidationError extends ClientError {
-
   public details: IErrorDetail[];
 
   constructor(message: string, details?: IErrorDetail[]) {
@@ -27,5 +26,4 @@ export class ValidationError extends ClientError {
       details: this.details,
     } as IError;
   }
-
 }
