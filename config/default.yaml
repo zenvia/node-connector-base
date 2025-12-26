@@ -1,3 +1,7 @@
+zenvia:
+  uri: https://custom-connector.zenvia.com/v1/transactions
+  webhook:
+    token: WEBHOOK_TOKEN
 kafka:
   uri: localhost:9092
   producerTopicHighPriority: PRODUCER_TOPIC_HIGH_PRIORITY
@@ -5,3 +9,5 @@ kafka:
   consumerTopics: CONSUMER_TOPIC
   retry: 1
   wait: 5
+ZenApi:
+  uri: https://api-hlg.zenvia.com/v2

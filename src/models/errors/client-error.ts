@@ -2,7 +2,6 @@ import { AbstractError, IError } from './abstract-error';
 export { AbstractError, IError };
 
 export class ClientError extends AbstractError {
-
   constructor(code: string, message: string, httpStatusCode: number) {
     super(message);
     this.code = code;
@@ -16,5 +15,4 @@ export class ClientError extends AbstractError {
       httpStatusCode: this.httpStatusCode,
     } as IError;
   }
-
 }

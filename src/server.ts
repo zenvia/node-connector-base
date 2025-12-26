@@ -1,5 +1,5 @@
 import * as express from 'express';
-import * as logger from '@zenvia/zcc-logger';
+import logger from '@zenvia/logger';
 import { createServer } from 'http';
 
 function normalizePort(val: any): any {
@@ -41,13 +41,12 @@ function createOnServerListening(bindTitle: string): () => void {
 }
 
 export function init(app: express.Application): void {
-  let server;
   const port = normalizePort(process.env.PORT || '3000');
   const bindTitle = typeof port === 'string'
     ? `Pipe ${port}`
     : `Port ${port}`;
   app.set('port', port);
-  server = createServer(app);
+  const server = createServer(app);
   server.listen(port);
   server.on('error', createOnServerError(bindTitle));
   server.on('listening', createOnServerListening(bindTitle));

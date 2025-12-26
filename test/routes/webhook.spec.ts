@@ -3,11 +3,12 @@ import * as request from 'supertest';
 import * as sinon from 'sinon';
 import * as app from '../../src/app';
 import * as webhookHandler from '../../src/handlers/webhook-handler';
+import { App } from 'supertest/types';
 
 describe('/webhook endpoint', () => {
 
-  let appInit;
-  let webhookHandlerStub;
+  let appInit: App;
+  let webhookHandlerStub: sinon.SinonStub<[webhook: any], Promise<void>>;
 
   before(async () => {
     appInit = await app.init();
@@ -26,8 +27,11 @@ describe('/webhook endpoint', () => {
         message: 'SOME_MESSAGE',
       };
 
+      const token = 'WEBHOOK_TOKEN';
+
       request(appInit)
       .post('/v1/webhook')
+      .set('x-auth-token', token)
       .send(payload)
       .expect(204)
       .end((err, res) => {

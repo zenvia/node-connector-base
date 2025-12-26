@@ -1,8 +1,6 @@
-/* eslint-disable no-unused-vars */
-
 import * as express from 'express';
 import * as expressWinston from 'express-winston';
-import * as logger from '@zenvia/zcc-logger';
+import logger from '@zenvia/logger';
 
 import { AbstractError, ClientError, IError } from './models/errors';
 

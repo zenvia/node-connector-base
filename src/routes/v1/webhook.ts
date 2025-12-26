@@ -1,28 +1,36 @@
 import { NextFunction, Request, Response, Router } from 'express';
-import * as logger from '@zenvia/zcc-logger';
+import logger from '@zenvia/logger';
+import * as config from 'config';
+import { handleReceiveMessage } from '../../zenvia-custom-service/webhook-service';
 
-import { IWebhook } from '../../models/webhook';
-import { webhookHandler } from '../../handlers/webhook-handler';
+interface IZenviaConfig {
+  webhook: {
+    token: string;
+  }
+}
 
-export const router = Router();
+export function authMiddleware(req: Request, res: Response, next: NextFunction) {
+  const receivedToken = req.headers['x-auth-token'];
+  const configZenvia: IZenviaConfig = config.get('zenvia');
+
+  if (!receivedToken || receivedToken !== configZenvia.webhook.token) {
+    logger.warn('Webhook authentication failed: Invalid Token');
+    return res.status(401).json({ status: 'UNAUTHORIZED', message: 'Invalid Token' });
+  }
+  return next();
+}
 
 async function webhookMiddleware(req: Request, res: Response, next: NextFunction): Promise<void> {
   try {
-    const webhook: IWebhook = {
-      headers: req.headers,
-      params: req.params,
-      query: req.query,
-      body: req.body,
-    };
+    logger.info('Receiving webhook request');
 
-    logger.info(`Receiving [${JSON.stringify(webhook)}] webhook content`);
-
-    await webhookHandler(webhook);
-
+    await handleReceiveMessage(req.body);
     res.sendStatus(204);
   } catch (error) {
     next(error);
   }
 }
 
-router.post('/', webhookMiddleware);
+export const router = Router();
+
+router.post('/', authMiddleware, webhookMiddleware);

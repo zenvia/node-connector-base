@@ -1,7 +1,9 @@
 ############################################
 ### APP BUILD STAGE
 ############################################
-FROM node:dubnium AS appbuild
+FROM node:24-alpine AS appbuild
+
+RUN apk --no-cache add python3 py3-pip make g++
 
 # Create app directory
 RUN mkdir -p /usr/src/app
@@ -13,7 +15,7 @@ COPY package-lock.json /usr/src/app/
 RUN npm ci
 
 # Build app
-COPY tslint.json tsconfig.json /usr/src/app/
+COPY eslint.config.mjs tsconfig.json /usr/src/app/
 COPY src /usr/src/app/src
 RUN npm run build
 
@@ -25,7 +27,9 @@ RUN rm -rf node_modules && \
 ############################################
 ### IMAGE BUILD STAGE
 ############################################
-FROM node:dubnium
+FROM node:24-alpine
+
+RUN apk --no-cache add curl vim
 
 # Create app directory
 RUN mkdir -p /usr/src/app

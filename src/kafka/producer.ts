@@ -1,18 +1,17 @@
 import * as Bluebird from 'bluebird';
 import * as config from 'config';
 import { v4 as uuidv4 } from 'uuid';
-import * as logger from '@zenvia/zcc-logger';
+import logger from '@zenvia/logger';;
 
 import { sendMessage, ProduceRequest, KeyedMessage } from '../kafka';
-import { ITransaction, TransactionType } from '../models/transaction';
 
 const kafkaConfig: any = config.get('kafka');
 
-export function sendTransactions(transactions: ITransaction[]): Bluebird<any[]> {
-  return Bluebird.map(transactions, transaction => sendTransaction(transaction), { concurrency: 2 });
+export function sendTransactions(transactions: any[]): Bluebird<any[]> {
+  return Bluebird.map(transactions, (transaction: any) => sendTransaction(transaction), { concurrency: 2 });
 }
 
-export async function sendTransaction(transaction: ITransaction): Promise<boolean> {
+export async function sendTransaction(transaction: any): Promise<boolean> {
   if (transaction) {
     const key = uuidv4();
     const topic = getTransactionTopic(transaction.type);
@@ -22,10 +21,10 @@ export async function sendTransaction(transaction: ITransaction): Promise<boolea
   return false;
 }
 
-function getTransactionTopic(transactionType: TransactionType): string {
+function getTransactionTopic(transactionType: any): string {
   let topic: string;
 
-  if (transactionType === TransactionType.MSGEVENT) {
+  if (transactionType === 'MSGEVENT') {
     topic = kafkaConfig.producerTopicHighPriority;
   } else {
     topic = kafkaConfig.producerTopicLowPriority;

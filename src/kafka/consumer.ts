@@ -1,8 +1,8 @@
-import * as logger from '@zenvia/zcc-logger';
+import logger from '@zenvia/logger';;
 
 import { Observable, CallbackFn } from '../libs/observable';
 import { registerMessageListener } from '../kafka';
-import { IMessage } from '../models/message';
+import { IMessage } from '../zenvia-custom-service/message';
 
 const onMessageObserver: Observable<IMessage> = new Observable();
 let ready = false;
