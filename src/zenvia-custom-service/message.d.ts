@@ -1,6 +1,7 @@
 export interface ITextContent {
   type: 'text';
   text: string;
+  payload?: string;
 }
 
 export interface IFileContent {
@@ -18,19 +19,13 @@ export interface IJsonContent {
   payload: Record<string, unknown>;
 }
 
-type TContent = ITextContent | IFileContent | IJsonContent;
+export type TContent = ITextContent | IFileContent | IJsonContent;
 
 export type TransactionType = 'MESSAGE' | 'MESSAGE_STATUS';
 
 export type MessageStatusCode =
-  | 'REJECTED'
-  | 'SENT'
-  | 'DELIVERED'
-  | 'NOT_DELIVERED'
-  | 'READ'
-  | 'DELETED'
-  | 'CLICKED'
-  | 'VERIFIED';
+  | 'REJECTED' | 'SENT' | 'DELIVERED' | 'NOT_DELIVERED'
+  | 'READ' | 'DELETED' | 'CLICKED' | 'VERIFIED';
 
 interface ITransaction<T extends TransactionType> {
   type: T;
