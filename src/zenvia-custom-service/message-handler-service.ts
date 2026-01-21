@@ -1,18 +1,19 @@
 import axios from 'axios';
 import logger from "@zenvia/logger";
 import * as config from 'config';
-import { IMessage, IMessageStatus, IZenviaConfig } from './message';
+import { IMessage, IMessageDto, IMessageStatus } from './message';
+import { IZenviaConfig } from '../models/config';
 
-const zenviaConfig: IZenviaConfig = config.get('zenvia');
+const zenviaConfig = config.get<IZenviaConfig>('zenvia');
 const uri = zenviaConfig.uri;
 
-export async function send(message: IMessage, token: string): Promise<any> {
+export async function send(message: IMessageDto, token: string): Promise<IMessage> {
   logger.debug('Sending the message to Zenvia', { message });
 
   try {
     logger.info('Sending the request to uri', uri);
 
-    const response = await axios.post(uri, message, {
+    const response = await axios.post<IMessage>(uri, message, {
       headers: {
         'X-AUTH-TOKEN': token,
         'Content-Type': 'application/json',
@@ -30,13 +31,13 @@ export async function send(message: IMessage, token: string): Promise<any> {
   }
 }
 
-export async function sendMessageStatus(messageStatus: IMessageStatus, token: string): Promise<any> {
+export async function sendMessageStatus(messageStatus: IMessageStatus, token: string): Promise<IMessageStatus> {
   logger.debug('Sending the message status status to Zenvia: ', { messageStatus });
 
   try {
     logger.info('Sending the message status request to uri', uri);
 
-    const response = await axios.post(uri, messageStatus, {
+    const response = await axios.post<IMessageStatus>(uri, messageStatus, {
       headers: {
         'X-AUTH-TOKEN': token,
         'Content-Type': 'application/json',

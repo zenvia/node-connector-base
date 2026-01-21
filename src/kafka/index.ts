@@ -1,7 +1,8 @@
 import * as Bluebird from 'bluebird';
 import * as config from 'config';
 import { KafkaClient, HighLevelProducer, ConsumerGroup, ConsumerGroupOptions, ProduceRequest, Message, KeyedMessage } from 'kafka-node';
-import logger from '@zenvia/logger';;
+import logger from '@zenvia/logger';
+import { IKafkaConfig } from '../models/config';
 
 export { KeyedMessage, ProduceRequest };
 
@@ -10,7 +11,7 @@ let producer: HighLevelProducer;
 let consumer: ConsumerGroup;
 
 export function init(): void {
-  const kafkaConfig: any = config.get('kafka');
+  const kafkaConfig = config.get<IKafkaConfig>('kafka');
   logger.debug(`Loaded kafka configuration: ${JSON.stringify(kafkaConfig)}`);
 
   client = new KafkaClient({

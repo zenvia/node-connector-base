@@ -2,16 +2,12 @@ import { NextFunction, Request, Response, Router } from 'express';
 import logger from '@zenvia/logger';
 import * as config from 'config';
 import { handleReceiveMessage } from '../../zenvia-custom-service/webhook-service';
+import { IZenviaConfig } from '../../models/config';
 
-interface IZenviaConfig {
-  webhook: {
-    token: string;
-  }
-}
+const configZenvia = config.get<IZenviaConfig>('zenvia');
 
 export function authMiddleware(req: Request, res: Response, next: NextFunction) {
   const receivedToken = req.headers['x-auth-token'];
-  const configZenvia: IZenviaConfig = config.get('zenvia');
 
   if (!receivedToken || receivedToken !== configZenvia.webhook.token) {
     logger.warn('Webhook authentication failed: Invalid Token');
