@@ -20,7 +20,7 @@ async function webhookMiddleware(req: Request, res: Response, next: NextFunction
   try {
     logger.info('Receiving webhook request');
 
-    await handleReceiveMessage(req.body);
+    handleReceiveMessage(req.body);
     res.sendStatus(204);
   } catch (error) {
     next(error);
