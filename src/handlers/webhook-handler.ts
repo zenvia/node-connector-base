@@ -2,10 +2,6 @@ import logger from '@zenvia/logger';
 import { IWebhookPayload } from '../zenvia-custom-service/webhook';
 import { IMessageStatus } from '../zenvia-custom-service/message';
 import { sendMessageStatus } from '../zenvia-custom-service/message-handler-service';
-import * as config from 'config';
-import { IZenviaConfig } from '../models/config';
-
-const zenviaConfig = config.get<IZenviaConfig>('zenvia');
 
 export async function webhookHandler(payload: IWebhookPayload): Promise<void> {
   logger.info('Handler executing logic for message', { id: payload.id });
@@ -32,5 +28,5 @@ async function customLogic(payload: IWebhookPayload): Promise<void> {
     },
   };
 
-  await sendMessageStatus(status, zenviaConfig.webhook.token);
+  await sendMessageStatus(status);
 }

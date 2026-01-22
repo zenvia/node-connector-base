@@ -7,15 +7,15 @@ import { IZenviaConfig } from '../models/config';
 const zenviaConfig = config.get<IZenviaConfig>('zenvia');
 const uri = zenviaConfig.uri;
 
-export async function send(message: IMessageDto, token: string): Promise<IMessage> {
+export async function send(message: IMessageDto): Promise<IMessage> {
   logger.debug('Sending the message to Zenvia', { message });
 
   try {
-    logger.info('Sending the request to uri', uri);
+    logger.info('Sending the request to uri', { uri });
 
     const response = await axios.post<IMessage>(uri, message, {
       headers: {
-        'X-AUTH-TOKEN': token,
+        'X-AUTH-TOKEN': zenviaConfig.webhook.token,
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
@@ -31,7 +31,7 @@ export async function send(message: IMessageDto, token: string): Promise<IMessag
   }
 }
 
-export async function sendMessageStatus(messageStatus: IMessageStatus, token: string): Promise<IMessageStatus> {
+export async function sendMessageStatus(messageStatus: IMessageStatus): Promise<IMessageStatus> {
   logger.debug('Sending the message status status to Zenvia: ', { messageStatus });
 
   try {
@@ -39,7 +39,7 @@ export async function sendMessageStatus(messageStatus: IMessageStatus, token: st
 
     const response = await axios.post<IMessageStatus>(uri, messageStatus, {
       headers: {
-        'X-AUTH-TOKEN': token,
+        'X-AUTH-TOKEN': zenviaConfig.webhook.token,
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
