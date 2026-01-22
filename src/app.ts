@@ -1,6 +1,6 @@
 import * as express from 'express';
 import * as expressWinston from 'express-winston';
-import logger from '@zenvia/logger';
+import logger, { traceMiddleware } from '@zenvia/logger';
 
 import { AbstractError, ClientError, IError } from './models/errors';
 
@@ -14,6 +14,7 @@ function initApp(): void {
 
 function initAppMiddlewares(): void {
   app.use(expressWinston.logger({ winstonInstance: logger }));
+  app.use(traceMiddleware);
   app.use(express.json());
 }
 

@@ -8,13 +8,8 @@ export async function handleReceiveMessage(payload: IWebhookPayload): Promise<vo
   try {
     logger.debug('Full webhook payload to process:', { payload });
 
-    await processMessage(payload);
+    await webhookHandler(payload);
   } catch (error: any) {
-    logger.error('Error processing webhook service', { id: payload.id, error: error.message });
-    throw error;
+    logger.error('Error processing webhook service', { id: payload.id, errorMessage: error.message, errorStack: error.stack });
   }
-}
-
-async function processMessage(payload: IWebhookPayload): Promise<void> {
-  await webhookHandler(payload);
 }
