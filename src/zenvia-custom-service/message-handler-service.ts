@@ -26,7 +26,10 @@ export async function send(message: IMessageDto): Promise<IMessage> {
 
     return response.data;
   } catch (error: any) {
-    logger.error('Error sending message: ', { error });
+    logger.error('Error sending message: ', {
+      errorMessage: error.message,
+      errorStack: error.stack,
+     });
     throw error;
   }
 }
@@ -35,7 +38,7 @@ export async function sendMessageStatus(messageStatus: IMessageStatus): Promise<
   logger.debug('Sending the message status status to Zenvia: ', { messageStatus });
 
   try {
-    logger.info('Sending the message status request to uri', uri);
+    logger.info('Sending the message status request to uri', { uri });
 
     const response = await axios.post<IMessageStatus>(uri, messageStatus, {
       headers: {
@@ -46,11 +49,14 @@ export async function sendMessageStatus(messageStatus: IMessageStatus): Promise<
       responseType: 'json',
     });
 
-    logger.debug('Message status sent successfully. Response from Zenvia: ', { uri, response });
+    logger.debug('Message status sent successfully. Response from Zenvia: ', { uri, response: response.data });
 
     return response.data;
   } catch (error: any) {
-    logger.error('Error sending message status: ', { error });
+    logger.error('Error sending message status: ', {
+      errorMessage: error.message,
+      errorStack: error.stack,
+     });
     throw error;
   }
 }

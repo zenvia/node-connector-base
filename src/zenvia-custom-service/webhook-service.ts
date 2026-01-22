@@ -10,6 +10,6 @@ export async function handleReceiveMessage(payload: IWebhookPayload): Promise<vo
 
     await webhookHandler(payload);
   } catch (error: any) {
-    logger.error('Error processing webhook service', { id: payload.id, error: error.message });
+    logger.error('Error processing webhook service', { id: payload.id, errorMessage: error.message, errorStack: error.stack });
   }
 }
