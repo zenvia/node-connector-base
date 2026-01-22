@@ -3,10 +3,10 @@ import logger from '@zenvia/logger';
 import { init as initApp, app } from './app';
 import { Kafka } from './libs/kafka';
 import { init as initServer } from './server';
-import { send } from './zenvia-custom-service/message-handler-service';
 import { IKafkaConfig } from './models/config';
 import * as config from 'config';
 import { IMessageDto } from './zenvia-custom-service/message';
+import { eventStreamHandler } from './handlers/event-stream-handler';
 
 const kafkaConfig = config.get<IKafkaConfig>('kafka');
 const kafka = new Kafka(kafkaConfig);
@@ -34,9 +34,7 @@ async function start(): Promise<void> {
   try {
     await kafka.connect();
     const messageConsumer = kafka.createConsumer<IMessageDto>();
-    messageConsumer.addListener(async (msg) => {
-      await send(msg)
-    });
+    await messageConsumer.addListener(eventStreamHandler);
     await initApp();
     initServer(app);
   } catch (error) {
