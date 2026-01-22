@@ -24,5 +24,8 @@
       "__name": "KAFKA_WAIT",
       "__format": "number"
     }
+  },
+  "ZenApi": {
+    "uri": "ZENAPI_URI"
   }
 }
