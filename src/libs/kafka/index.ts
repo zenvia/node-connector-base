@@ -13,8 +13,9 @@ export class Kafka {
     this.client = new KafkaJS.Kafka({
       kafkaJS: {
         clientId: config.clientId || 'my-app',
-        brokers: config.uri.split(',')
-      }
+        brokers: config.uri.split(','),
+        logLevel: KafkaJS.logLevel.WARN,
+      },
     });
   }
 
