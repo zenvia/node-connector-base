@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import axios from 'axios';
+import logger from '@zenvia/logger';
 import { BatchType, IZenApiConfig } from '../models/zen-api';
 import { AbstractCsvStrategy } from '../strategies/abstract-csv-strategy';
 
@@ -42,7 +43,14 @@ export abstract class BaseBatchController<T> {
 
       res.json(response.data);
     } catch (error) {
-      console.error(`Failed to create ${this.resourceName} batch`, error);
+      logger.error(`Failed to create ${this.resourceName} batch`, {
+        errorMessage: error.message,
+        errorStack: error.stack,
+        batchId: req.params.batchId,
+        response: error.response?.data,
+        status: error.response?.status,
+        code: error.code,
+      });
       res.status(500).json({ error: `Error processing ${this.resourceName}` });
     }
   }
@@ -64,7 +72,14 @@ export abstract class BaseBatchController<T> {
 
       res.json(response.data);
     } catch (error) {
-      console.error(`Failed to list ${this.resourceName}`, error);
+      logger.error(`Failed to list at ${this.resourceName}`, {
+        errorMessage: error.message,
+        errorStack: error.stack,
+        batchId: req.params.batchId,
+        response: error.response?.data,
+        status: error.response?.status,
+        code: error.code,
+      });
       res.status(500).json({ error: `Error listing ${this.resourceName}` });
     }
   }
@@ -80,7 +95,14 @@ export abstract class BaseBatchController<T> {
 
       res.json(response.data);
     } catch (error) {
-      console.error(`Failed to get ${this.resourceName} details`, error);
+      logger.error(`Failed to get ${this.resourceName} details`, {
+        errorMessage: error.message,
+        errorStack: error.stack,
+        batchId: req.params.batchId,
+        response: error.response?.data,
+        status: error.response?.status,
+        code: error.code,
+      });
       res.status(500).json({ error: `Error getting ${this.resourceName}` });
     }
   }
