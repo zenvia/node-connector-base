@@ -29,7 +29,7 @@
   "dependencies": {
     "@confluentinc/kafka-javascript": "^1.8.0",
     "@zenvia/logger": "^2.0.1",
-    "axios": "^1.13.2",
+    "axios": "^1.15.0",
     "bluebird": "^3.7.2",
     "config": "^4.1.1",
     "express": "^5.2.1",
